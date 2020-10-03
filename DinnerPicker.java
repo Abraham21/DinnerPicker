@@ -19,9 +19,9 @@ public class DinnerPicker {
     System.out.println("WINNER WINNER CHICKEN DINNER: " + winner.getName());
   }
 
-  public static Option getWinner(Options[] options) {
+  public static Option getWinner(Option[] options) {
     for (int round = 0; round < NUMBER_ROUNDS; round++) {
-      int randOption = (int) Math.random() * options.length;
+      int randOption = (int) (Math.random() * options.length);
       options[randOption].incrementCount();
       if (options[randOption].getCount() == WIN) {
         return options[randOption];
@@ -29,18 +29,18 @@ public class DinnerPicker {
     }
     Option maxOption = options[0];
     for (int option = 1; option < options.length; option++) {
-      int optionCount = option.getCount();
+      int optionCount = options[option].getCount();
       if (optionCount > maxOption.getCount()) {
         maxOption = options[option];
       } else if (optionCount == VALUE_FOR_A_TIE && maxOption.getCount() == VALUE_FOR_A_TIE) {
         return getCoinTossWinner(options[option], maxOption);
       }
     }
-
+    return maxOption;
   }
 
   public static Option getCoinTossWinner(Option option1, Option option2) {
-    int coinToss = (int) Math.random() * 2;
+    int coinToss = (int) (Math.random() * 2);
     if (coinToss == 0) {
       return option1;
     }

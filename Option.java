@@ -1,6 +1,6 @@
 public class Option {
 
-  private final START_COUNT = 0;
+  private static final int START_COUNT = 0;
 
   private String name;
   private int count;
